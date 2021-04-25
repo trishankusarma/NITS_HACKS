@@ -25,10 +25,19 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    isConfirmed:{
-      type:Boolean,
-      default:false
-    }
+    adress:{
+      type:String
+    },
+    profileType:{
+      type:String 
+    },
+    profile:{
+      type:Buffer
+    },
+    products:[{
+      type:mongoose.Schema.Types.ObjectId,
+      ref: "Product"
+    }]
 },{
     timestamps:true
 })
@@ -75,4 +84,4 @@ userSchema.pre('save',async function(next){
     next();
 })
 
-module.exports = User = mongoose.model('UserModel',userSchema);
+module.exports = User = mongoose.model('User',userSchema);

@@ -19,7 +19,7 @@ exports.user_register = async (req,res)=>{
     try {
         const user = await User.findOne({email});
 
-        if(!user){
+        if(user){
             res.json({user:null , error:'Email Already Exists'});
         }
     
@@ -33,9 +33,9 @@ exports.user_register = async (req,res)=>{
 
         await newUser.save();
 
-        const url = `http://localhost:3000/confirmation/${token}`;
+        // const url = `http://localhost:3000/confirmation/${token}`;
 
-        utils.sendEmail(email, url , 'Confirm Email');
+        // utils.sendEmail(email, url , 'Confirm Email');
             
         res.json({ user:newUser , error:null , token });
 
@@ -79,4 +79,29 @@ exports.user_logout = async (req, res) => {
     } catch (error) {
         res.json({user:null,error:'Internal Server Error'});
     }
+}
+
+//profile upload
+exports.profile_upload =  async (req,res)=>{
+    
+
+    console.log('FILE',req.file.mimetype , req.file.buffer );
+
+    try {
+        const user = req.user;
+
+        console.log(user);
+
+        user.profileType = req.file.mimetype;
+        user.profile = req.file.buffer;
+
+        console.log(user);
+
+        await user.save();
+        
+        res.json({ user , error:null });  
+
+      } catch (error) {
+        res.json({ user:null , error:'Internal Server Error' });         
+      }
 }

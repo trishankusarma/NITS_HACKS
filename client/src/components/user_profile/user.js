@@ -10,8 +10,60 @@ const User = () => {
 
     const [ response , setResponse ] = useState('');
     const [ user , setUser ] = useState(null);
+    const [ fileD , setFileD ] = useState(null); 
 
     const history = useHistory();
+
+    const setFile = (e)=>{
+        setFileD(e.target.files[0]);
+    }
+
+    const onSubmit = async (e)=>{
+
+        e.preventDefault();
+
+        if(fileD && !(fileD.type==='image/png' || fileD.type==='image/jpg' || fileD.type==='image/jpeg' )){
+            
+            setResponse(`Please Upload a image less than 1MB `);
+                        
+            return;
+        }
+
+       if(fileD && fileD.size>1000000){
+
+           setResponse(`Please Upload a image or pdf less than 1MB ${fileD.size} kb is not allowed`);
+   
+           return;
+        }
+
+        const formData = new FormData();
+
+        formData.append('upload_profile',fileD);
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+
+        AxiosInstance.patch(`/user/uploadProfile`,formData,config)
+            
+        .then((response) => {
+
+                console.log(response.data);
+               
+                if(response.data.error!==null){
+                    
+                    setResponse(response.data.error);
+                    
+                    return;
+                }
+                          
+        }).catch((error) => {
+                console.log(error);
+        });
+    }
+
 
     useEffect(async()=>{
 
@@ -56,6 +108,15 @@ const User = () => {
             : 
               <span>{response}</span>
             }
+
+            <form onSubmit={onSubmit} >
+                <input type='file' 
+                        name="upload_profile" 
+                        onChange={setFile} required />
+                <button type='submit'>
+                    Upload
+                </button>
+            </form>
 
             <div>
                 Not an User ? 
