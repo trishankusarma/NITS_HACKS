@@ -138,7 +138,7 @@ const User = () => {
             <div className='bottomCenter '>
                <button className="btn">
                    <Link to='/' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
-                       Add Stock Page
+                       Add Stock
                    </Link>
                </button>
                <button className="btn">
@@ -149,6 +149,11 @@ const User = () => {
                <button className="btn">
                    <Link to='/user/viewDemand' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
                        View Demand
+                   </Link>
+               </button>
+               <button className="btn">
+                   <Link to='/user/viewOrder' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
+                       Orders
                    </Link>
                </button>
             </div>
