@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 
 const cartSchema = new mongoose.Schema({
-    addTo:[{
+    addTo:
+    [{
         type:mongoose.Types.ObjectId,
         ref: "Product"
     }],

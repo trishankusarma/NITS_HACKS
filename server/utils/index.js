@@ -1,3 +1,4 @@
 module.exports = {
-    ...require('./email')
+    emailConfig:require('./email'),
+    errorResConfig:require("./errorRes")
 }
