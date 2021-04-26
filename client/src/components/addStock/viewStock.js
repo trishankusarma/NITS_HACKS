@@ -42,9 +42,9 @@ const  ViewStock = () => {
     };
 
     const setImageUrl = (product)=>{
-        const base64Flag = `data:${product.imageType};base64,`;
+        const base64Flag = `data:${product.productType};base64,`;
            
-        const imageStr = arrayBufferToBase64(product.image.data);
+        const imageStr = arrayBufferToBase64(product.productImage.data);
 
         return  base64Flag + imageStr ;
     }
@@ -54,12 +54,14 @@ const  ViewStock = () => {
             {respose}
 
             { products.map(prod=>{
-                <div className='card1'> 
+                return(
+                 <div className='card1'> 
                      <span>{prod.name}</span><br />
                      <span>{prod.quantity}</span>kg<br />
                      <span>{prod.price}</span>
-                     <img type={prod.imageType} src={setImageUrl(prod)}  />
-                </div>    
+                     <img type={prod.productType} src={setImageUrl(prod)}  />
+                </div> 
+                )   
             })}
         </div>
     )
