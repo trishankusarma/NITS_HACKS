@@ -38,7 +38,13 @@ const vendorSchema = new mongoose.Schema({
     products:[{
       type:mongoose.Schema.Types.ObjectId,
       ref: "Product"
-    }]
+    }],
+    long:{
+      type:Number
+    },
+    lat:{
+      type:Number
+    }
 },{
     timestamps:true
 })

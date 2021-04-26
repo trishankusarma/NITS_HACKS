@@ -1,11 +1,7 @@
 const router=require("express").Router();
 const {vendor}=require("../controllers");
 const {userAuth}=require("../middleware/")
-<<<<<<< HEAD
-const {upload}=require("../utils")
-=======
 const { upload } = require('../utils');
->>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
 
 // GET
 router.get('/all',userAuth("Vendor"), vendor.VendorContoller.getAll_products);

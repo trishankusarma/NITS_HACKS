@@ -12,6 +12,7 @@ const transporter = nodemailer.createTransport(
     },
   })
 );
+
 const bcrypt = require("bcryptjs");
 
 
@@ -100,21 +101,12 @@ const VendorContoller = {
   
   getAll_products: async (req, res, next) => {
     try {
-<<<<<<< HEAD
-      console.log("User",req.user._id);
-      const data = await Product.findOne({
-=======
       const data = await Product.find({
->>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
         owner: req.user._id,
       });
       res.status(200).json({
         products: data,
-<<<<<<< HEAD
-        error: null,
-=======
         error: null
->>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
       });
     } catch (error) {
       console.log(error);
@@ -191,22 +183,14 @@ const VendorContoller = {
         quantity,
         price,
         productType: req.file.mimetype,
-<<<<<<< HEAD
-        productImage: req.file.buffer,
-=======
         productImage: req.file.buffer
->>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
       });
 
       await newProduct.save();
 
       res.status(201).json({
         product: newProduct,
-<<<<<<< HEAD
-        error: null,
-=======
         error: null
->>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
       });
     } catch (error) {
       console.log(error);
