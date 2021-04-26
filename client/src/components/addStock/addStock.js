@@ -16,6 +16,7 @@ const  AddStock = () => {
     const [ response , setResponse ] = useState('');
 
     const setFile = (e)=>{
+
         setFileD(e.target.files[0]);
     }
 
@@ -71,7 +72,7 @@ const  AddStock = () => {
         formData.append('product',product);
         formData.append('price',price);
         if(fileD!==null){
-           formData.append('upload_profile',fileD);
+           formData.append('upload_image',fileD);
         }
         const config = {
             headers: {
@@ -79,7 +80,7 @@ const  AddStock = () => {
             }
         };
 
-        AxiosInstance.post(`/product/add`,formData,config)
+        AxiosInstance.post(`/vendor/one`,formData,config)
             
         .then((response) => {
 
@@ -150,6 +151,7 @@ const  AddStock = () => {
                      name='upload_image'
                      value={fileD}
                      onChange={setFile}
+                     required
                  />
 
                  <button type='submit'>

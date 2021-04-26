@@ -10,7 +10,7 @@ const  ViewStock = () => {
 
     useEffect(() => {
 
-        AxiosInstance.get(`/product/all`)
+        AxiosInstance.get(`/vendor/all`)
             
         .then((response) => {
 

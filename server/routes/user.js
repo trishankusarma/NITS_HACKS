@@ -1,28 +1,22 @@
 const express = require('express');
 const router = new express.Router();
+const {userContoller} = require('../controllers/user');
+const { userAuth } = require('../middleware/');
+const {upload}=require("../utils");
 
-const multer = require("multer");
 
-const {UserController} = require('../controllers/user');
+router.get( '/' , userAuth("User") ,userContoller.get_profile );
+router.get('/logout',userAuth("User"),userContoller.logout);
 
-const { userAuth } = require('../middleware');
+router.post('/register',userContoller.registration);
+router.post('/login',userContoller.login);
 
-const upload = multer({
+router.patch('/uploadProfile', upload.single('upload_profile') , userAuth("User") , userContoller.update_profile );
 
-    fileFilter(req, file, cb) {
-
-         cb(undefined, true);
-    }
+router.get( '/test' ,(req,res)=>{
+    res.json({
+        message:"done"
+    })
 });
-
-router.get( '/' , userAuth , UserController.user_get );
-
-router.post('/register',UserController.user_register);
-
-router.post('/login',UserController.user_login);
-
-router.get('/logout',userAuth, UserController.user_logout);
-
-router.patch('/uploadProfile', upload.single('upload_profile') , userAuth , UserController.profile_upload );
 
 module.exports = router;

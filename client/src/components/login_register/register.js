@@ -43,7 +43,7 @@ const Register = () => {
               'Content-Type': 'application/json'
             }
         }
-        const res = await AxiosInstance.post( '/user/register' , user , config );
+        const res = await AxiosInstance.post( '/vendor/register' , user , config );
         
         console.log(res);
         

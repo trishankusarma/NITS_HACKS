@@ -43,7 +43,7 @@ const Login = () => {
               'Content-Type': 'application/json'
             }
         }
-        const res = await AxiosInstance.post( '/user/login' , user , config );
+        const res = await AxiosInstance.post( '/vendor/login' , user , config );
 
         console.log(res);
         

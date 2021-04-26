@@ -16,6 +16,12 @@ const productSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    ResetToken:{
+        type:String
+    },
+    ExpireToken:{
+      type:Date
+    },
     productType:{
         type:String
     },

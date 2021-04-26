@@ -19,7 +19,7 @@ const Edit = () => {
         }
 
         if(user===null && Cookies.get('authorization')){
-            const res = await AxiosInstance.get('/user');
+            const res = await AxiosInstance.get('/vendor/profile');
   
             console.log(res);
   
@@ -78,7 +78,7 @@ const Edit = () => {
             }
         };
 
-        AxiosInstance.patch(`/user/uploadProfile`,formData,config)
+        AxiosInstance.put(`/vendor/profile`,formData,config)
             
         .then((response) => {
 

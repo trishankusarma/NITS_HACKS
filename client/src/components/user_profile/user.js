@@ -55,7 +55,7 @@ const User = () => {
 
         if(User===null){
             if(Cookies.get('authorization')){
-                const res = await AxiosInstance.get('/user');
+                const res = await AxiosInstance.get('/vendor/profile');
       
                 console.log(res);
       
@@ -81,7 +81,7 @@ const User = () => {
 
     const logOut = async () =>{
 
-        const res = await AxiosInstance.get('/user/logout');
+        const res = await AxiosInstance.get('/vendor/logout');
 
         if(res.data.error===null){
             history.push('/user/login');
