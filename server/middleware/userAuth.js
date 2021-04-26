@@ -15,9 +15,9 @@ const auth = (role) => {
           Role = "Admin";
           break;
       }
-      if(Role === "Admin"){
-        next()
-        return
+      if (Role === "Admin") {
+        next();
+        return;
       }
       let token = req.cookies.authorization;
 

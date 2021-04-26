@@ -1,25 +1,29 @@
 const router=require("express").Router();
 const {vendor}=require("../controllers");
+const {userAuth}=require("../middleware/")
 
 // GET
-router.get('/', vendor.VendorContoller.getAll_products);
-router.get('/', vendor.VendorContoller.getOne_product);
-router.get('/', vendor.VendorContoller.get_orders);
-router.get('/', vendor.VendorContoller.get_profile);
-router.get('/', vendor.VendorContoller.get_one_order);
+router.get('/all',userAuth("Vendor"), vendor.VendorContoller.getAll_products);
+router.get('/one',userAuth("Vendor"),vendor.VendorContoller.getOne_product);
+router.get('/all_orders',userAuth("Vendor"),vendor.VendorContoller.get_orders);
+router.get('/profile',userAuth("Vendor"),vendor.VendorContoller.get_profile);
+router.get('/one_order',userAuth("Vendor"),vendor.VendorContoller.get_one_order);
+router.get('/logout',userAuth("Vendor"),vendor.VendorContoller.logout);
 
 // POST
-router.post('/', vendor.VendorContoller.login);
-router.post('/', vendor.VendorContoller.registration);
-router.post('/', vendor.VendorContoller.postOne_product);
-router.post('/', vendor.VendorContoller.reset);
+router.post('/login', vendor.VendorContoller.login);
+router.post('/register',vendor.VendorContoller.registration);
+router.post('/one',userAuth("Vendor"),vendor.VendorContoller.postOne_product);
+router.post('/reset',userAuth("Vendor"),vendor.VendorContoller.reset);
 
 //PUT
-router.put('/', vendor.VendorContoller.update_orders);
-router.put('/', vendor.VendorContoller.update_profile);
+router.put('/one_order',userAuth("Vendor"),vendor.VendorContoller.update_orders);
+router.put('/profile',userAuth("Vendor"),vendor.VendorContoller.update_profile);
 
 //DELETE
-router.delete('/', vendor.VendorContoller.delete_one_product);
+router.delete('/one',userAuth("Vendor"),vendor.VendorContoller.delete_one_product);
 
-
+router.get('/test',(req,res)=>{
+    res.send("jitul teorn")
+});
 module.exports = router;

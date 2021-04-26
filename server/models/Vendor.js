@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 const vendorSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -61,7 +62,8 @@ vendorSchema.methods.generateAuthToken = async function () {
 
 vendorSchema.statics.findByCredentials = async (email, password) => {
 
-  const user = await User.findOne({ email });
+  console.log("model",Vendor)
+  const user = await Vendor.findOne({ email });
 
   if (!user) {
     return null;
@@ -84,4 +86,4 @@ vendorSchema.pre('save',async function(next){
     next();
 })
 
-module.exports = User = mongoose.model('Vendor',vendorSchema);
+module.exports = Vendor = mongoose.model('Vendor',vendorSchema);

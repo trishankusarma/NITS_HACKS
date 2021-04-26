@@ -1,5 +1,5 @@
-module.exports={
-    user:require("./user"),
-    admin:require("./admin"),
-    vendor:require("./vendor")
-}
+module.exports = {
+  user: require("./user"),
+  admin: require("./admin"),
+  vendor: require("./vendor"),
+};
