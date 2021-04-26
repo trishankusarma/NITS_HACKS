@@ -9,6 +9,7 @@ import Edit from './edit';
 import AddStock from '../addStock/addStock';
 import ViewStock from '../addStock/viewStock';
 import ViewDemand from '../addStock/viewDemand';
+import ViewOrder from '../addStock/viewOrder';
 
 const Page1=()=>{
     return(<>
@@ -24,6 +25,8 @@ const Page1=()=>{
                     <Route path='/user/viewStock' component={ViewStock}/>
 
                     <Route path='/user/viewDemand' component={ViewDemand}/>
+
+                    <Route path='/user/viewOrder' component={ViewOrder}/>
                </Switch>
             </div>
         </Router>
