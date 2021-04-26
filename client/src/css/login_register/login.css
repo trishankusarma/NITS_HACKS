@@ -1,0 +1,109 @@
+body {
+    background-color: #054b61e3;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .Login form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    margin: auto;
+    margin-top: 5vh;
+  }
+  .Login form input {
+    margin: 2.5vh 0 2.5vh;
+    border: 0px;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    height: 6vh;
+  color: gainsboro;
+    padding-left: 5vw;
+    font-family: cursive;
+    transition: 1s ease;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 14%,
+      rgba(0, 212, 255, 1) 99%
+    );
+  }
+  .Login form input:focus {
+    outline: none;
+    padding-left: 5vw;
+    font-family: cursive;
+    color: rgb(190, 170, 170);
+    transform: scale(1.2);
+    transition: 1s ease;
+    background: rgb(0, 14, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 14%,
+      rgba(0, 212, 255, 1) 99%
+    );
+  }
+  .Login form input::placeholder {
+    font-size: 1rem;
+    padding-left: 2vw;
+    color: rgb(189, 189, 182);
+  }
+  .Login form input:focus::placeholder {
+    transform: translate(-2%, -100%);
+    font-size: 0.4rem;
+    font-weight: bold;
+    color: hsl(202, 91%, 50%);
+  }
+  .Login form button {
+    border: 0px;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    height: 5vh;
+    width: 8rem;
+    font-size: 1.2rem;
+    margin: 2.5vh 0 4vh;
+    background: linear-gradient(270deg, #359bb1 0%, #0058ff 61.44%),
+      linear-gradient(0deg, #c4c4c4, #c4c4c4);
+    color: rgb(173, 162, 117);
+    font-family: cursive;
+    padding-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+  }
+  
+  
+  .button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+  }
+  
+  .forgotPass{
+    color: rgb(80, 211, 211);
+    font-size: large;
+    font-style: oblique;
+    text-decoration: underline;
+    margin-bottom: 2vh;
+  }
+  .newUser,.oldUser{
+    color: #c0dde4;
+    font-size: large;
+  }
+  .newUser span,.oldUser span{
+    padding-left: 3vw;
+    color: #4c197c;
+    font-weight: bold;
+  }
+  .register form{
+    margin-top: 5vh;
+  }
+  .logo{
+    margin-top: 5vh;
+  }
+  
+  
+  

@@ -51,12 +51,13 @@ const Register = () => {
     }
 
     return (
-        <div>
-            <h2>Register</h2>
+        <div className="Login register">
+         <div className="logo"><img src="../logo.png" width="150vh" height="120vh"></img></div>
             <form onSubmit={onSubmit}>
                 <input
                    name='name'
                    type='text'
+                   autoComplete="off"
                    value={name}
                    placeholder='Enter Name'
                    onChange={handleChange}
@@ -66,6 +67,7 @@ const Register = () => {
                    name='email'
                    type='email'
                    value={email}
+                   autoComplete="off"
                    placeholder='Enter Email'
                    onChange={handleChange}
                    required 
@@ -74,6 +76,7 @@ const Register = () => {
                    name='phoneNo'
                    type='Number'
                    value={phoneNo}
+                   autoComplete="off"
                    placeholder='Enter Phone Number'
                    onChange={handleChange}
                    required 
@@ -82,19 +85,20 @@ const Register = () => {
                    name='password'
                    type='password'
                    value={password}
+                   autoComplete="off"
                    placeholder='Enter Password'
                    onChange={handleChange}
                    required 
                 />
-                <button type='submit'>
+                <button className="button" type='submit'>
                      Register
                 </button>
             </form>
 
-            <div>
+            <div className="oldUser">
                 Already registered ? 
                 <Link to='/user/login'>
-                     Login
+                     <span>Login</span>
                 </Link>
             </div>
             {response}

@@ -70,19 +70,18 @@ const UserController={
         }
     },
     profile_upload : async (req,res)=>{
-    
-
-        console.log('FILE',req.file.mimetype , req.file.buffer );
-    
+        
         try {
-            const user = req.user;
-    
-            console.log(user);
-    
-            user.profileType = req.file.mimetype;
-            user.profile = req.file.buffer;
-    
-            console.log(user);
+           const user = req.user;
+
+           user.name = req.body.name;
+           user.email = req.body.email;
+           user.phoneNo = req.body.phoneNo;
+
+           if(req.file!==undefined){
+              user.profileType = req.file.mimetype;
+              user.profile = req.file.buffer;
+           }
     
             await user.save();
             
@@ -92,11 +91,7 @@ const UserController={
             res.json({ user:null , error:'Internal Server Error' });         
           }
     }
-    
-    
 }
-
-
 
 
 module.exports={UserController};
