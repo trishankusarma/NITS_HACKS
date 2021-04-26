@@ -8,7 +8,7 @@ const transporter=nodemailer.createTransport(sendgridTransport({
         api_key:"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"
     }
 }))
-const bcrypt=require("bcryptjs")
+const bcrypt=require("bcryptjs");
 
 
 const VendorContoller={
@@ -216,7 +216,8 @@ const VendorContoller={
     // PUT
     update_profile:(req,res,next)=>{
         try{
-            const {name,password}=req.body;
+            
+
 
         }
         catch(error){
@@ -238,11 +239,16 @@ const VendorContoller={
     // DELETE
     delete_one_product:(req,res,next)=>{
         try{
-
+                const data=await Product.findByIdAndDelete(req.params.id);
+                res.status(200).json({
+                    data:data,
+                    error:false
+                })
         }
         catch{
-            
-        }
+            console.log(error);
+            errorResConfig(error,res);
+        }   
 },
     // PASSWORD
     forget:()=>{
@@ -295,6 +301,7 @@ const VendorContoller={
         try{
     const newPassword=req.body.Password;
     const setToken=req.body.token;
+
     User.findOne({ResetToken:setToken,ExpireToken:{$gt:Date.now()}})
     .then(user=>{
         if(!user)
