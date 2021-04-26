@@ -10,6 +10,7 @@ router.get('/all_orders',userAuth("Vendor"),vendor.VendorContoller.get_orders);
 router.get('/profile',userAuth("Vendor"),vendor.VendorContoller.get_profile);
 router.get('/one_order/:id',userAuth("Vendor"),vendor.VendorContoller.get_one_order);
 router.get('/logout',userAuth("Vendor"),vendor.VendorContoller.logout);
+router.get('/vendors/sell',userAuth("Vendor"),vendor.VendorContoller.getAllVendorsSellNow);
 
 // POST
 router.post('/login', vendor.VendorContoller.login);

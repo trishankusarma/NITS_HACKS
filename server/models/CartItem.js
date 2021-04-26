@@ -6,12 +6,14 @@ const cartSchema = new mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: "Product",
+        uniquie: true
       },
     ],
     saveLater: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Product",
+        uniquie: true
       },
     ],
     Bought: [
@@ -19,6 +21,7 @@ const cartSchema = new mongoose.Schema(
         product: {
           type: mongoose.Types.ObjectId,
           ref: "Product",
+          uniquie: true
         },
         status: {
           type: Boolean,

@@ -29,14 +29,7 @@ app.use("/", routes);
 
 // test 
 
-const data=geolib.getPreciseDistance(
-  { latitude:26.117108  , longitude:  91.802088  },
-  { latitude: 26.148136, longitude: 91.786957,}
-  )
-        
-      
-     
-  console.log(data);
+
 
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));

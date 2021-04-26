@@ -127,6 +127,20 @@ const VendorContoller = {
       errorResConfig(error, res);
     }
   },
+  getAllVendorsSellNow:async(req,res,next)=>{
+    try{
+      const data=await Vendor.find({_id:{$ne:req.user._id},sellNow:true});
+      res.status(200).json({
+        error:null,
+        vendors:data
+      })
+      // vendor negosiation through phone
+    }
+    catch(error){
+      console.log(error);
+      errorResConfig(error, res);
+    }
+  },
   get_orders: async (req, res, next) => {
     try {
       const data = await CartItem.find().populate({

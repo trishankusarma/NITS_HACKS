@@ -44,6 +44,10 @@ const vendorSchema = new mongoose.Schema({
     },
     lat:{
       type:Number
+    },
+    sellNow:{
+      type:Boolean,
+      default:false
     }
 },{
     timestamps:true
