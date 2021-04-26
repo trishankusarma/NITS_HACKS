@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
     profile:{
       type:Buffer
     },
+    ResetToken:{type:String
+    },
+    ExpireToken:{
+      type:Date
+    },
     products:[{
       type:mongoose.Schema.Types.ObjectId,
       ref: "Product"

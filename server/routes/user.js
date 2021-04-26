@@ -1,28 +1,17 @@
 const express = require('express');
 const router = new express.Router();
-
-const multer = require("multer");
-
-const {UserController} = require('../controllers/user');
-
+const {userContoller} = require('../controllers/user');
 const { userAuth } = require('../middleware');
+const {upload}=require("../utils");
 
-const upload = multer({
 
-    fileFilter(req, file, cb) {
+router.get( '/' , userAuth , userContoller.get_profile );
+router.get('/logout',userAuth, userContoller.logout);
 
-         cb(undefined, true);
-    }
-});
+router.post('/register',userContoller.registration);
+router.post('/login',userContoller.login);
 
-router.get( '/' , userAuth , UserController.user_get );
+router.patch('/uploadProfile', upload.single('upload_profile') , userAuth , userContoller.update_profile );
 
-router.post('/register',UserController.user_register);
-
-router.post('/login',UserController.user_login);
-
-router.get('/logout',userAuth, UserController.user_logout);
-
-router.patch('/uploadProfile', upload.single('upload_profile') , userAuth , UserController.profile_upload );
 
 module.exports = router;

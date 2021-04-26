@@ -13,7 +13,7 @@ const bcrypt=require("bcryptjs");
 
 const VendorContoller={
     // AUTH
-    login:(req,res,next)=>{
+    login:async (req,res,next)=>{
         const { email ,  password } = req.body;
         
         try {
@@ -36,7 +36,7 @@ const VendorContoller={
             errorResConfig(error,res);
         }
     },
-    registration:(req,res,next)=>{
+    registration:async (req,res,next)=>{
         try{
             const { name , email , phoneNo , password } = req.body;
     
@@ -69,7 +69,7 @@ const VendorContoller={
             errorResConfig(error,res);
         }
     },
-    logout:(req,res,next)=>{
+    logout:async (req,res,next)=>{
         try {
             res.clearCookie('authorization');
     
@@ -81,7 +81,7 @@ const VendorContoller={
         }
     },
     // GET
-    get_profile:(req,res,next)=>{
+    get_profile:async (req,res,next)=>{
         try{
             const data =await Vendor.findById(req.user._id);
             res.status(200).json({
@@ -95,21 +95,7 @@ const VendorContoller={
             errorResConfig(error,res);
         }
     },
-    get_data:(req,res,next)=>{
-        try{
-
-            res.status(200).json({
-                user:data,
-                error:null,
-            }) 
-
-        }
-        catch(error){
-            console.log(error);
-            errorResConfig(error,res);
-        }
-    },
-    getAll_products:(req,res,next)=>{
+    getAll_products:async (req,res,next)=>{
         try{
             const data=await Product.find({
                     ower:req.user._id
@@ -125,7 +111,7 @@ const VendorContoller={
             errorResConfig(error,res);
         }
     },
-    getOne_product:(req,res,next)=>{
+    getOne_product:async (req,res,next)=>{
         try{
             const data=await Product.findById(req.params.id);
             
@@ -140,7 +126,7 @@ const VendorContoller={
             errorResConfig(error,res);
         }
     },
-    get_orders:(req,res,next)=>{
+    get_orders:async (req,res,next)=>{
         try{
             const data=await CartItem.find()
             .populate({
@@ -162,7 +148,7 @@ const VendorContoller={
             errorResConfig(error,res);
         }
     },
-    get_one_order:(req,res,next)=>{
+    get_one_order:async (req,res,next)=>{
         try{
             const data=await CartItem.find()
             .populate({
@@ -187,7 +173,7 @@ const VendorContoller={
     },
 
     // POST
-    postOne_product:(req,res,next)=>{
+    postOne_product:async (req,res,next)=>{
         try{
             const user = req.user;
             const {name,quantity,price}=req.body
@@ -214,20 +200,47 @@ const VendorContoller={
         }
     },
     // PUT
-    update_profile:(req,res,next)=>{
-        try{
+    update_profile:async (req,res)=>{
+        
+        try {
+           const user = req.user;
+
+           user.name = req.body.name;
+           user.email = req.body.email;
+           user.phoneNo = req.body.phoneNo;
+
+           if(req.file!==undefined){
+              user.profileType = req.file.mimetype;
+              user.profile = req.file.buffer;
+           }
+    
+            await user.save();
             
-
-
-        }
-        catch(error){
-            console.log(error);
-            errorResConfig(error,res);
-        }
+            res.json({ user , error:null });  
+    
+          } catch (error) {
+            res.json({ user:null , error:'Internal Server Error' });         
+          }
     },
-    update_orders:(req,res,next)=>{
+    update_orders:async (req,res,next)=>{
         try{
-            const {email,password}=req.body;
+            const {status}=req.body;
+            const data=await CartItem.find()
+            .populate({
+                path:"Product",
+                select:"name",
+                match:{_id:req.params.id},
+                populate:{
+                    path:"Vendor",
+                    match:{_id:req.user._id},
+                }
+            });
+            res.status(200).json({
+                user:data,
+                error:null,
+            });
+            data.status=status;
+            
 
         }
         catch(error){
@@ -237,7 +250,7 @@ const VendorContoller={
     },
     
     // DELETE
-    delete_one_product:(req,res,next)=>{
+    delete_one_product:async (req,res,next)=>{
         try{
                 const data=await Product.findByIdAndDelete(req.params.id);
                 res.status(200).json({
@@ -251,7 +264,7 @@ const VendorContoller={
         }   
 },
     // PASSWORD
-    forget:()=>{
+    forget:async ()=>{
         
             crypto.randomBytes(32,(err,buffer)=>{
                 if(err)
@@ -271,16 +284,7 @@ const VendorContoller={
                         Info.ResetToken=token
                         // exp after 2 min
                         Info.ExpireToken=Date.now()+120000
-                        // console.log((Info));
-                        //     transporter.sendMail({
-                        //         to:req.body.Email,
-                        //         from:"jitulteron9@gmail.com",
-                        //         subject:"Password Reset",
-                        //         html:`<h4>Click <a href="http://localhost:3000/reset/${token}">Here</a></h4>`  
-                        https://blogteron.herokuapp.com/
-                        //     })
-                        //     res.json({meg:"Check Your Email Please"})
-                        // Info.save();
+                    
                         Info.save().then((result)=>{
                             transporter.sendMail({
                                 to:req.body.Email,
@@ -297,7 +301,7 @@ const VendorContoller={
         
         
     },
-    reset:()=>{
+    reset:async ()=>{
         try{
     const newPassword=req.body.Password;
     const setToken=req.body.token;

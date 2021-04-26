@@ -1,4 +1,5 @@
 module.exports = {
     emailConfig:require('./email'),
-    errorResConfig:require("./errorRes")
+    errorResConfig:require("./errorRes"),
+    upload:require("./upload")
 }
