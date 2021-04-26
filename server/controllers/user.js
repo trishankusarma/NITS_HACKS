@@ -84,16 +84,19 @@ exports.user_logout = async (req, res) => {
 //profile upload
 exports.profile_upload =  async (req,res)=>{
     
-
-    console.log('FILE',req.file.mimetype , req.file.buffer );
-
     try {
         const user = req.user;
 
         console.log(user);
 
-        user.profileType = req.file.mimetype;
-        user.profile = req.file.buffer;
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.phoneNo = req.body.phoneNo;
+
+        if(req.file!==undefined){
+            user.profileType = req.file.mimetype;
+            user.profile = req.file.buffer;
+        }
 
         console.log(user);
 

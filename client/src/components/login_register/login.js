@@ -6,6 +6,8 @@ import AxiosInstance from '../../utilsClient/AxiosInstance';
 
 import Cookies from 'js-cookie';
 
+import '../../css/login_register/login.css';
+
 const Login = () => {
 
     const history = useHistory();
@@ -49,37 +51,44 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <h2>Log in</h2>
-            <form onSubmit={onSubmit}>
-                <input
-                   name='email'
-                   type='email'
-                   value={email}
-                   placeholder='Enter Email'
-                   onChange={handleChange}
-                   required 
-                />
-                <input
-                   name='password'
-                   type='password'
-                   value={password}
-                   placeholder='Enter Password'
-                   onChange={handleChange}
-                   required 
-                />
-                <button type='submit'>
-                    Login
-                </button>
-            </form>
-            { response }
-            <div>
-                Not an User ? 
-                <Link to='/user/register'>
-                     Register
-                </Link>
-            </div>
+        <div className="Login">
+        <div className="logo"><img src="../logo.png" width="150vh" height="120vh"></img></div>
+        <form onSubmit={onSubmit}>
+            <input
+               name='email'
+               type='email'
+               value={email}
+               autoComplete='off'
+               placeholder='Enter Email'
+               onChange={handleChange}
+               required 
+            />
+            <input
+               name='password'
+               type='password'
+               autoComplete='off'
+               value={password}
+               placeholder='Enter Password'
+               onChange={handleChange}
+               required 
+            />
+            <button className="button" type='submit'>
+                Login
+            </button>
+        </form>
+        { response }
+        <div className="forgotPass">
+            Forgot Password ? 
+            
         </div>
+        <div className="newUser">
+            Not an User ? 
+            <Link to='/user/register'>
+                <span>Register</span>
+            </Link>
+        </div>
+        
+    </div>
     )
 }
 
