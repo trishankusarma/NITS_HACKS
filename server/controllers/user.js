@@ -21,10 +21,10 @@ const UserController={
             })
     
             const token = await newUser.generateAuthToken();
-    
-            res.cookie('authorization', token, options);
-    
+        
             await newUser.save();
+
+            res.cookie('authorization', token, options);
     
             // const url = `http://localhost:3000/confirmation/${token}`;
     
@@ -50,7 +50,7 @@ const UserController={
             
             const token = await user.generateAuthToken();
     
-            res.cookie('authorization', token, options)
+            res.cookie('authorization', token, options);
             
             res.json({ user , error:null , token });
         

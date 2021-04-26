@@ -19,4 +19,4 @@ const cartSchema = new mongoose.Schema({
     timestamps:true
 })
 
-module.exports = User = mongoose.model('Vendor',cartSchema);
+module.exports = User = mongoose.model('CartItem',cartSchema);

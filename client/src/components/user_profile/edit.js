@@ -13,6 +13,11 @@ const Edit = () => {
     const [ User , set_User ] = useState(null);
 
     useEffect(async ()=>{
+
+        if(user){
+            set_User(user);
+        }
+
         if(user===null && Cookies.get('authorization')){
             const res = await AxiosInstance.get('/user');
   
