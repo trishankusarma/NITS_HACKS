@@ -1,4 +1,6 @@
-module.exports = {
-    User: require('./user'),
-    Product:require('./product')
-}
+module.exports={
+    Vendor:require("./Vendor"),
+    User:require("./User"),
+    Product:require("./Product"),
+    CartItem:require("./CartItem")
+};
