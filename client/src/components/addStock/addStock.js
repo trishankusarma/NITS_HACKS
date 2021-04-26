@@ -129,7 +129,7 @@ const  AddStock = () => {
                     type='Number'
                     value={quantity}
                     autoComplete="off"
-                    placeholder='00 kg'
+                    placeholder='00'
                     onChange={handleChange}
                     required 
                  />
@@ -157,10 +157,12 @@ const  AddStock = () => {
             { products.map(prod=>{
                 return(
                     <div className='card1' style={{textAlign:'center',marginTop:'5vh'}}> 
+                    <img type={prod.productType} src={setImageUrl(prod)}  />
+                     <div className="container">
                      <span>{prod.name}</span><br />
-                     <span>{prod.quantity}</span>kg<br />
-                     <span>{prod.price}</span>
-                     <img type={prod.productType} src={setImageUrl(prod)}  />
+                     <span>{prod.quantity} kg</span><br />
+                     <span>₹ {prod.price}</span>
+                     </div>
                 </div>  
                 )  
             })}

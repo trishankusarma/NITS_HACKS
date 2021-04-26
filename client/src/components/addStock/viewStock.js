@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 
 import AxiosInstance from '../../utilsClient/AxiosInstance';
 
+import "../../css/stockCard/stockCard.css";
 const  ViewStock = () => {
 
     const [ products , setProducts ] = useState([]);
@@ -56,10 +57,12 @@ const  ViewStock = () => {
             { products.map(prod=>{
                 return(
                  <div className='card1'> 
+                 <img type={prod.productType} src={setImageUrl(prod)} height="250px" width="250px"  />
+                 <div className="container">
                      <span>{prod.name}</span><br />
-                     <span>{prod.quantity}</span>kg<br />
-                     <span>{prod.price}</span>
-                     <img type={prod.productType} src={setImageUrl(prod)}  />
+                     <span>{prod.quantity} kg</span><br />
+                     <span>₹{prod.price} </span><span style={{fontSize:"0.8rem",fontWeight:"100"}}>per kg</span>
+                    </div> 
                 </div> 
                 )   
             })}
