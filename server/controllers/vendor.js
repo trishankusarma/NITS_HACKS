@@ -13,7 +13,9 @@ const transporter = nodemailer.createTransport(
 );
 const bcrypt = require("bcryptjs");
 
+
 const VendorContoller = {
+
   // AUTH
   login: async (req, res, next) => {
     const { email, password } = req.body;
@@ -96,11 +98,12 @@ const VendorContoller = {
   },
   getAll_products: async (req, res, next) => {
     try {
-      const data = await Product.find({
-        ower: req.user._id,
+      console.log("User",req.user._id);
+      const data = await Product.findOne({
+        owner: req.user._id,
       });
       res.status(200).json({
-        user: data,
+        products: data,
         error: null,
       });
     } catch (error) {
@@ -113,7 +116,7 @@ const VendorContoller = {
       const data = await Product.findById(req.params.id);
 
       res.status(200).json({
-        user: data,
+        product: data,
         error: null,
       });
     } catch (error) {
@@ -172,14 +175,14 @@ const VendorContoller = {
         name,
         quantity,
         price,
-        productType: req.file.minitype,
+        productType: req.file.mimetype,
         productImage: req.file.buffer,
       });
       await newProduct.save();
 
       res.status(201).json({
-        data: newProduct,
-        error: false,
+        product: newProduct,
+        error: null,
       });
     } catch (error) {
       console.log(error);

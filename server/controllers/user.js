@@ -93,6 +93,7 @@ const userContoller = {
   },
   getAll_products: async (req, res, next) => {
     try {
+      console.log(Product,"product")
       const data = await Product.find({});
       res.status(200).json({
         user: data,
@@ -100,7 +101,10 @@ const userContoller = {
       });
     } catch (error) {
       console.log(error);
-      errorResConfig(error, res);
+      res.json({
+        error:true,
+      })
+      // errorResConfig(error, res);
     }
   },
   getOne_product: async (req, res, next) => {
@@ -168,7 +172,7 @@ const userContoller = {
   update_profile: async (req, res) => {
     try {
       const user = req.user;
-
+      console.log(user);
       user.name = req.body.name;
       user.email = req.body.email;
       user.phoneNo = req.body.phoneNo;
@@ -182,6 +186,7 @@ const userContoller = {
 
       res.json({ user, error: null });
     } catch (error) {
+      console.log(error)
       res.json({ user: null, error: "Internal Server Error" });
     }
   },

@@ -1,7 +1,6 @@
 
 const multer = require("multer");
 
-
 const upload = multer({
 
     fileFilter(req, file, cb) {
