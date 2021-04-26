@@ -99,7 +99,7 @@ const Edit = () => {
     }
 
     return (
-        <div>
+        <div className="EditDetails" >
 
             {response}
 
@@ -108,6 +108,7 @@ const Edit = () => {
              <input
                    name='name'
                    type='text'
+                   placeholder="Name"
                    autoComplete="off"
                    value={User!==null ? User.name : ''}
                    onChange={handleChange}
@@ -116,6 +117,7 @@ const Edit = () => {
                 <input
                    name='email'
                    type='email'
+                   placeholder="Email"
                    value={User!==null ? User.email : ''}
                    autoComplete="off"
                    onChange={handleChange}
@@ -124,6 +126,7 @@ const Edit = () => {
                 <input
                    name='phoneNo'
                    type='Number'
+                   placeholder='Phone No'
                    value={User!==null ? User.phoneNo : ''}
                    autoComplete="off"
                    onChange={handleChange}

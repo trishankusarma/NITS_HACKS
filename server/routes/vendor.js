@@ -14,7 +14,7 @@ router.get('/logout',userAuth("Vendor"),vendor.VendorContoller.logout);
 // POST
 router.post('/login', vendor.VendorContoller.login);
 router.post('/register',vendor.VendorContoller.registration);
-router.post('/one',userAuth("Vendor"),upload.single('upload_image'),vendor.VendorContoller.postOne_product);
+router.post('/one',userAuth("Vendor"),upload.single('upload_product'),vendor.VendorContoller.postOne_product);
 router.post('/reset',userAuth("Vendor"),vendor.VendorContoller.reset);
 
 //PUT

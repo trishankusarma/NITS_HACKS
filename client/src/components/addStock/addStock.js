@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 
 import AxiosInstance from '../../utilsClient/AxiosInstance';
 
+import '../../css/addProduct/addProduct.css'
+
 const  AddStock = () => {
 
     const [ product , setProduct ] = useState({
@@ -10,6 +12,8 @@ const  AddStock = () => {
         price:''
     })
 
+    const {name,quantity,price} = product;
+
     const [ products , setProducts ] = useState([]);
  
     const [ fileD , setFileD] = useState(null);
@@ -17,7 +21,8 @@ const  AddStock = () => {
 
     const setFile = (e)=>{
 
-        setFileD(e.target.files[0]);
+      //  setFileD(e.target.files[0]);
+      setFileD(e.target.files[0]);
     }
 
     const arrayBufferToBase64 = (buffer)=>{
@@ -39,10 +44,10 @@ const  AddStock = () => {
         return  base64Flag + imageStr ;
     }
 
-    const { name , price , quantity } = product;
-
     const handleChange = (e)=>{
+
         setProduct({
+            ...product,
             [e.target.name]:e.target.value
         })
     }
@@ -66,13 +71,15 @@ const  AddStock = () => {
            return;
         }
 
+        console.log(name,quantity,price);
+
         const formData = new FormData();
 
         formData.append('name',name);
-        formData.append('product',product);
+        formData.append('quantity',quantity);
         formData.append('price',price);
         if(fileD!==null){
-           formData.append('upload_image',fileD);
+           formData.append('upload_product',fileD);
         }
         const config = {
             headers: {
@@ -80,11 +87,11 @@ const  AddStock = () => {
             }
         };
 
+        console.log(formData);
+
         AxiosInstance.post(`/vendor/one`,formData,config)
             
         .then((response) => {
-
-                console.log(response.data);
                
                 if(response.data.error!==null){
                     
@@ -92,7 +99,7 @@ const  AddStock = () => {
                     
                     return;
                 }
-            
+
                 setProducts([...products,response.data.product]);
 
                 setProduct({
@@ -108,11 +115,13 @@ const  AddStock = () => {
         });
     }
 
-    return (
-        <div className='addContianer'>
+    console.log(products);
 
-            <form className='card' onSubmit={onSubmit}>
-                 <input
+    return (
+        <div className='addProduct'>
+
+            <form onSubmit={onSubmit}>
+                 <input 
                     name='name'
                     type='text'
                     value={name}
@@ -121,19 +130,16 @@ const  AddStock = () => {
                     onChange={handleChange}
                     required 
                  />
-                 <br />
-                  <input
+                  <input 
                     name='quantity'
                     type='Number'
                     value={quantity}
                     autoComplete="off"
-                    placeholder='00'
+                    placeholder='00 kg'
                     onChange={handleChange}
                     required 
                  />
-                 <span>kg</span>
-                 <br />
-                 <input
+                 <input 
                     name='price'
                     type='Number'
                     value={price}
@@ -142,14 +148,9 @@ const  AddStock = () => {
                     onChange={handleChange}
                     required 
                  />
-                 <br />
-
-                 <label>Add Image</label><br/>
-
                  <input 
                      type='file' 
-                     name='upload_image'
-                     value={fileD}
+                     name='upload_product'
                      onChange={setFile}
                      required
                  />
@@ -160,12 +161,14 @@ const  AddStock = () => {
             </form>
 
             { products.map(prod=>{
-                <div className='card1'> 
+                return(
+                    <div className='card1' style={{textAlign:'center',marginTop:'5vh'}}> 
                      <span>{prod.name}</span><br />
                      <span>{prod.quantity}</span>kg<br />
                      <span>{prod.price}</span>
-                     <img type={prod.imageType} src={setImageUrl(prod)}  />
-                </div>    
+                     {/* <img type={prod.imageType} src={setImageUrl(prod)}  /> */}
+                </div>  
+                )  
             })}
         </div>
     )

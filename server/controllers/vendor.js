@@ -168,6 +168,10 @@ const VendorContoller = {
   // POST
   postOne_product: async (req, res, next) => {
     try {
+
+      console.log(req.body);
+      console.log(req.file);
+
       const user = req.user;
       const { name, quantity, price } = req.body;
       const newProduct = new Product({

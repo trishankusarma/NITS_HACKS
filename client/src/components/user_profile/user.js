@@ -99,56 +99,55 @@ const User = () => {
                 {imgSrc!==null ?
                  <img type={User.profileType} src={imgSrc}  />
                  : 
-                 <div class='imgAlt'>       
-                 </div>
+                 <img src="https://picsum.photos/100/100"/>
               }
             </div>
 
             <div className='profileInfo'>
               { User!==null ? 
               <div className='profileInfoIn'>
-                  <span>{User.name}</span>
-                  <span>{User.phoneNo}</span>
-                  <span>{User.email}</span>
+                  <div>{User.name}</div>
+                  <div>{User.phoneNo}</div>
+                  <div>{User.email}</div>
                </div>
               : 
               <div className='profileInfoIn'>
-                  <span>Name</span>
-                  <span>PhoneNe</span>
-                  <span>Email</span>
+                  <div>Name</div>
+                  <div>PhoneNe</div>
+                  <div>Email</div>
                </div>
               }
             </div>
 
             <div className='topLeft'>
-               <button onClick={logOut} className='logOut'>
+               <button onClick={logOut} className='logOut edit'>
                    Log Out
                </button>
                <br/>
                {user!==null ? 
-                <button className='edit btn'>
-                   <Link to='/user/edit'>
+                <button className='edit' >
+                   <Link to='/user/edit' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
                         Edit
                    </Link>
                 </button> :
-                <button className='edit btn'>
+                <button className='btn'>
                    Edit
                 </button>
                }
             </div>
             <div className='bottomCenter '>
-               <button>
-                   <Link to='/' style={{whiteSpace:'nowrap'}}>
+               <button className="btn">
+                   <Link to='/' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
                        Add Stock Page
                    </Link>
                </button>
-               <button>
-                   <Link to='/user/viewStock' style={{whiteSpace:'nowrap'}}>
+               <button className="btn">
+                   <Link to='/user/viewStock' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
                        View Stock
                    </Link>
                </button>
-               <button>
-                   <Link to='/user/viewDemand' style={{whiteSpace:'nowrap'}}>
+               <button className="btn">
+                   <Link to='/user/viewDemand' style={{whiteSpace:'nowrap',textDecoration:'none',color:'white'}}>
                        View Demand
                    </Link>
                </button>

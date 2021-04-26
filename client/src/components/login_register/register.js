@@ -52,57 +52,58 @@ const Register = () => {
 
     return (
         <div className="Login register">
-         <div className="logo"><img src="../logo.png" width="150vh" height="120vh"></img></div>
-            <form onSubmit={onSubmit}>
-                <input
-                   name='name'
-                   type='text'
-                   autoComplete="off"
-                   value={name}
-                   placeholder='Enter Name'
-                   onChange={handleChange}
-                   required 
-                />
-                <input
-                   name='email'
-                   type='email'
-                   value={email}
-                   autoComplete="off"
-                   placeholder='Enter Email'
-                   onChange={handleChange}
-                   required 
-                />
-                <input
-                   name='phoneNo'
-                   type='Number'
-                   value={phoneNo}
-                   autoComplete="off"
-                   placeholder='Enter Phone Number'
-                   onChange={handleChange}
-                   required 
-                />
-                <input
-                   name='password'
-                   type='password'
-                   value={password}
-                   autoComplete="off"
-                   placeholder='Enter Password'
-                   onChange={handleChange}
-                   required 
-                />
-                <button className="button" type='submit'>
-                     Register
-                </button>
-            </form>
+       
+        <form onSubmit={onSubmit}>
+        <div className="logo"><img src="../logo.png" width="150vh" height="120vh"></img></div>
+            <input
+               name='name'
+               type='text'
+               autoComplete="off"
+               value={name}
+               placeholder='Enter Name'
+               onChange={handleChange}
+               required 
+            />
+            <input
+               name='email'
+               type='email'
+               value={email}
+               autoComplete="off"
+               placeholder='Enter Email'
+               onChange={handleChange}
+               required 
+            />
+            <input
+               name='phoneNo'
+               type='Number'
+               value={phoneNo}
+               autoComplete="off"
+               placeholder='Enter Phone Number'
+               onChange={handleChange}
+               required 
+            />
+            <input
+               name='password'
+               type='password'
+               value={password}
+               autoComplete="off"
+               placeholder='Enter Password'
+               onChange={handleChange}
+               required 
+            />
+            <button className="button" type='submit'>
+                 Register
+            </button>
+        </form>
 
-            <div className="oldUser">
-                Already registered ? 
-                <Link to='/user/login'>
-                     <span>Login</span>
-                </Link>
-            </div>
-            {response}
+        <div className="oldUser">
+            Already registered ? 
+            <Link to='/user/login'>
+                 <span>Login</span>
+            </Link>
         </div>
+        {response}
+    </div>
     )
 }
 
