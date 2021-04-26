@@ -12,9 +12,12 @@ const transporter = nodemailer.createTransport(
     },
   })
 );
+
 const bcrypt = require("bcryptjs");
 
+
 const VendorContoller = {
+
   // AUTH
   login: async (req, res, next) => {
     const { email, password } = req.body;
@@ -116,7 +119,7 @@ const VendorContoller = {
       const data = await Product.findById(req.params.id);
 
       res.status(200).json({
-        user: data,
+        product: data,
         error: null,
       });
     } catch (error) {

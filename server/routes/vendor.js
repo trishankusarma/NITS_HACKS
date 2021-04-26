@@ -5,10 +5,10 @@ const { upload } = require('../utils');
 
 // GET
 router.get('/all',userAuth("Vendor"), vendor.VendorContoller.getAll_products);
-router.get('/one',userAuth("Vendor"),vendor.VendorContoller.getOne_product);
+router.get('/one/:id',userAuth("Vendor"),vendor.VendorContoller.getOne_product);
 router.get('/all_orders',userAuth("Vendor"),vendor.VendorContoller.get_orders);
 router.get('/profile',userAuth("Vendor"),vendor.VendorContoller.get_profile);
-router.get('/one_order',userAuth("Vendor"),vendor.VendorContoller.get_one_order);
+router.get('/one_order/:id',userAuth("Vendor"),vendor.VendorContoller.get_one_order);
 router.get('/logout',userAuth("Vendor"),vendor.VendorContoller.logout);
 
 // POST

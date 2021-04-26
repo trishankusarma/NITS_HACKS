@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const geolib=require("geolib");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
@@ -23,6 +23,23 @@ app.use(
 
 const routes = require("./routes");
 
+
+
 app.use("/", routes);
 
+// test 
+
+const data=geolib.getPreciseDistance(
+  { latitude:26.117108  , longitude:  91.802088  },
+  { latitude: 26.148136, longitude: 91.786957,}
+  )
+        
+      
+     
+  console.log(data);
+
+
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+// 1 3.7-2.7
+// 2 293-380
+// 25%
