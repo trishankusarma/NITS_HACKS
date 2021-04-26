@@ -4,9 +4,11 @@ import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 import Profile from './user';
 
-import AddStock from '../addStock/stockFrontPage';
-
 import Edit from './edit';
+
+import AddStock from '../addStock/addStock';
+import ViewStock from '../addStock/viewStock';
+import ViewDemand from '../addStock/viewDemand';
 
 const Page1=()=>{
     return(<>
@@ -18,6 +20,10 @@ const Page1=()=>{
                     <Route exact path='/' component={AddStock}/>
 
                     <Route path='/user/edit' component={Edit}/>
+
+                    <Route path='/user/viewStock' component={ViewStock}/>
+
+                    <Route path='/user/viewDemand' component={ViewDemand}/>
                </Switch>
             </div>
         </Router>

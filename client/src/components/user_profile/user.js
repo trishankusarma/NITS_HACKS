@@ -142,6 +142,16 @@ const User = () => {
                        Add Stock Page
                    </Link>
                </button>
+               <button>
+                   <Link to='/user/viewStock' style={{whiteSpace:'nowrap'}}>
+                       View Stock
+                   </Link>
+               </button>
+               <button>
+                   <Link to='/user/viewDemand' style={{whiteSpace:'nowrap'}}>
+                       View Demand
+                   </Link>
+               </button>
             </div>
         </div>
       </>
