@@ -37,9 +37,9 @@ const  AddStock = () => {
     };
 
     const setImageUrl = (product)=>{
-        const base64Flag = `data:${product.imageType};base64,`;
+        const base64Flag = `data:${product.productType};base64,`;
            
-        const imageStr = arrayBufferToBase64(product.image.data);
+        const imageStr = arrayBufferToBase64(product.productImage.data);
 
         return  base64Flag + imageStr ;
     }
@@ -71,8 +71,6 @@ const  AddStock = () => {
            return;
         }
 
-        console.log(name,quantity,price);
-
         const formData = new FormData();
 
         formData.append('name',name);
@@ -86,8 +84,6 @@ const  AddStock = () => {
                 'content-type': 'multipart/form-data'
             }
         };
-
-        console.log(formData);
 
         AxiosInstance.post(`/vendor/one`,formData,config)
             
@@ -114,8 +110,6 @@ const  AddStock = () => {
                 console.log(error);
         });
     }
-
-    console.log(products);
 
     return (
         <div className='addProduct'>
@@ -166,7 +160,7 @@ const  AddStock = () => {
                      <span>{prod.name}</span><br />
                      <span>{prod.quantity}</span>kg<br />
                      <span>{prod.price}</span>
-                     {/* <img type={prod.imageType} src={setImageUrl(prod)}  /> */}
+                     <img type={prod.productType} src={setImageUrl(prod)}  />
                 </div>  
                 )  
             })}
