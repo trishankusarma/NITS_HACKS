@@ -13,8 +13,13 @@ const Edit = () => {
     const [ User , set_User ] = useState(null);
 
     useEffect(async ()=>{
+
+        if(user){
+            set_User(user);
+        }
+
         if(user===null && Cookies.get('authorization')){
-            const res = await AxiosInstance.get('/user');
+            const res = await AxiosInstance.get('/vendor/profile');
   
             console.log(res);
   
@@ -73,7 +78,7 @@ const Edit = () => {
             }
         };
 
-        AxiosInstance.patch(`/user/uploadProfile`,formData,config)
+        AxiosInstance.put(`/vendor/profile`,formData,config)
             
         .then((response) => {
 
@@ -94,7 +99,7 @@ const Edit = () => {
     }
 
     return (
-        <div>
+        <div className="EditDetails" >
 
             {response}
 
@@ -103,6 +108,7 @@ const Edit = () => {
              <input
                    name='name'
                    type='text'
+                   placeholder="Name"
                    autoComplete="off"
                    value={User!==null ? User.name : ''}
                    onChange={handleChange}
@@ -111,6 +117,7 @@ const Edit = () => {
                 <input
                    name='email'
                    type='email'
+                   placeholder="Email"
                    value={User!==null ? User.email : ''}
                    autoComplete="off"
                    onChange={handleChange}
@@ -119,6 +126,7 @@ const Edit = () => {
                 <input
                    name='phoneNo'
                    type='Number'
+                   placeholder='Phone No'
                    value={User!==null ? User.phoneNo : ''}
                    autoComplete="off"
                    onChange={handleChange}

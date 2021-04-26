@@ -3,6 +3,7 @@ const { options ,errorResConfig} = require("../utils");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 const crypto = require("crypto");
+
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
@@ -96,21 +97,31 @@ const VendorContoller = {
       errorResConfig(error, res);
     }
   },
+  
   getAll_products: async (req, res, next) => {
     try {
+<<<<<<< HEAD
       console.log("User",req.user._id);
       const data = await Product.findOne({
+=======
+      const data = await Product.find({
+>>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
         owner: req.user._id,
       });
       res.status(200).json({
         products: data,
+<<<<<<< HEAD
         error: null,
+=======
+        error: null
+>>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
       });
     } catch (error) {
       console.log(error);
       errorResConfig(error, res);
     }
   },
+
   getOne_product: async (req, res, next) => {
     try {
       const data = await Product.findById(req.params.id);
@@ -168,6 +179,10 @@ const VendorContoller = {
   // POST
   postOne_product: async (req, res, next) => {
     try {
+
+      console.log(req.body);
+      console.log(req.file);
+
       const user = req.user;
       const { name, quantity, price } = req.body;
       const newProduct = new Product({
@@ -176,13 +191,22 @@ const VendorContoller = {
         quantity,
         price,
         productType: req.file.mimetype,
+<<<<<<< HEAD
         productImage: req.file.buffer,
+=======
+        productImage: req.file.buffer
+>>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
       });
+
       await newProduct.save();
 
       res.status(201).json({
         product: newProduct,
+<<<<<<< HEAD
         error: null,
+=======
+        error: null
+>>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
       });
     } catch (error) {
       console.log(error);

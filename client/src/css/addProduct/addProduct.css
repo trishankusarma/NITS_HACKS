@@ -1,0 +1,99 @@
+.addProduct{
+    background-color: #2a63adc7;
+}
+.addProduct form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top:3vh; 
+    height: 50vh;
+}
+.addProduct form input {
+    margin: 2.5vh 0 1vh;
+    border: 0px;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    height: 6vh;
+    color: gainsboro;
+    padding-left: 5vw;
+    font-family: cursive;
+    transition: 1s ease;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 14%,
+      rgba(0, 213, 255, 0.603) 99%
+    );
+  }
+  .addProduct form input:focus {
+    outline: none;
+    padding-left: 5vw;
+    font-family: cursive;
+    color: rgb(190, 170, 170);
+    transform: scale(1.2);
+    transition: 1s ease;
+    background: rgb(0, 14, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 14%,
+      rgba(0, 212, 255, 1) 99%
+    );
+  }
+
+  .addProduct form input[type="file"]{
+    padding-left: 3vw;
+    width: 70vw;
+  }
+  .addProduct form input[type="file"]::-webkit-file-upload-button{
+    border: none;
+    color: #83b118;
+    padding: .6em .8em;
+    border-radius: .2em;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 1rem;
+    background-color: transparent;
+    transition: none;
+  }
+  input[type=file]::-webkit-file-upload-button:active {
+    font-size:1.05rem ;
+    transition: none;
+    border: none;
+  }
+  .addProduct form input::placeholder {
+    font-size: 1rem;
+    padding-left: 2vw;
+    color: rgb(189, 189, 182);
+  }
+  .addProduct form input:focus::placeholder {
+    transform: translate(-2%, -100%);
+    font-size: 0.4rem;
+    font-weight: bold;
+    color: hsl(202, 91%, 50%);
+  }
+  .addProduct form button {
+    border: 0px;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    height: 4vh;
+    width: 5rem;
+    font-size: 1rem;
+    margin: 1vh 0 2.5vh;
+    background: linear-gradient(270deg, #359bb1 0%, #0058ff 61.44%),
+      linear-gradient(0deg, #c4c4c4, #c4c4c4);
+    color: rgb(173, 162, 117);
+    font-family: cursive;
+    padding-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+  }
+  
+  
+  .button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+  }

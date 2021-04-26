@@ -1,7 +1,11 @@
 const router=require("express").Router();
 const {vendor}=require("../controllers");
 const {userAuth}=require("../middleware/")
+<<<<<<< HEAD
 const {upload}=require("../utils")
+=======
+const { upload } = require('../utils');
+>>>>>>> fa55ce71a03aecf296df67a97796fa2cd7b4aea0
 
 // GET
 router.get('/all',userAuth("Vendor"), vendor.VendorContoller.getAll_products);
@@ -19,7 +23,7 @@ router.post('/reset',userAuth("Vendor"),vendor.VendorContoller.reset);
 
 //PUT
 router.put('/one_order',userAuth("Vendor"),vendor.VendorContoller.update_orders);
-router.put('/profile',userAuth("Vendor"),vendor.VendorContoller.update_profile);
+router.put('/profile',userAuth("Vendor"),upload.single('upload_profile'),vendor.VendorContoller.update_profile);
 
 //DELETE
 router.delete('/one',userAuth("Vendor"),vendor.VendorContoller.delete_one_product);
