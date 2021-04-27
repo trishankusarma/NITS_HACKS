@@ -12,9 +12,12 @@ const transporter = nodemailer.createTransport(
     },
   })
 );
+
 const bcrypt = require("bcryptjs");
 
+
 const VendorContoller = {
+
   // AUTH
   login: async (req, res, next) => {
     const { email, password } = req.body;
@@ -116,10 +119,24 @@ const VendorContoller = {
       const data = await Product.findById(req.params.id);
 
       res.status(200).json({
-        user: data,
+        product: data,
         error: null,
       });
     } catch (error) {
+      console.log(error);
+      errorResConfig(error, res);
+    }
+  },
+  getAllVendorsSellNow:async(req,res,next)=>{
+    try{
+      const data=await Vendor.find({_id:{$ne:req.user._id},sellNow:true});
+      res.status(200).json({
+        error:null,
+        vendors:data
+      })
+      // vendor negosiation through phone
+    }
+    catch(error){
       console.log(error);
       errorResConfig(error, res);
     }

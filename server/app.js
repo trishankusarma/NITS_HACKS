@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const geolib=require("geolib");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
@@ -23,6 +23,16 @@ app.use(
 
 const routes = require("./routes");
 
+
+
 app.use("/", routes);
 
+// test 
+
+
+
+
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+// 1 3.7-2.7
+// 2 293-380
+// 25%

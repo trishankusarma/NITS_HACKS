@@ -11,6 +11,8 @@ const transporter = nodemailer.createTransport(
     },
   })
 );
+const geolib =require("geolib");
+
 const bcrypt = require("bcryptjs");
 
 const userContoller = {
@@ -37,7 +39,7 @@ const userContoller = {
   },
   registration: async (req, res, next) => {
     try {
-      const { name, email, phoneNo, password } = req.body;
+      const { name, email, phoneNo, password ,long,lat} = req.body;
 
       const user = await User.findOne({ email });
 
@@ -50,6 +52,8 @@ const userContoller = {
         email,
         phoneNo,
         password,
+        long
+        ,lat
       });
 
       const token = await newUser.generateAuthToken();
@@ -93,19 +97,39 @@ const userContoller = {
   },
   getAll_products: async (req, res, next) => {
     try {
-      const data = await Product.find({});
+      
+      const user=await User.findById(req.user._id);
+      const data = await Product.find({})
+      .populate("owner","name long");
+      
+
+      const filterData=data.filter(info=>{
+        let distance =geolib.getPreciseDistance(
+          { latitude:info.owner.lat  , longitude:  info.owner.long },
+          { latitude: user.lat, longitude: user.long,}
+          )
+          if(distance<10){
+              return info;
+          }
+      }) 
+            
+           
       res.status(200).json({
-        user: data,
+        user: filterData,
         error: null,
       });
     } catch (error) {
       console.log(error);
-      errorResConfig(error, res);
+      res.json({
+        error:true,
+      })
+      // errorResConfig(error, res);
     }
   },
   getOne_product: async (req, res, next) => {
     try {
-      const data = await Product.findById(req.params.id);
+      const data = await Product.findById(req.params.id)
+      .populate("owner","name email phoneNo")
 
       res.status(200).json({
         user: data,
@@ -168,7 +192,7 @@ const userContoller = {
   update_profile: async (req, res) => {
     try {
       const user = req.user;
-
+      console.log(user);
       user.name = req.body.name;
       user.email = req.body.email;
       user.phoneNo = req.body.phoneNo;
@@ -182,6 +206,7 @@ const userContoller = {
 
       res.json({ user, error: null });
     } catch (error) {
+      console.log(error)
       res.json({ user: null, error: "Internal Server Error" });
     }
   },
