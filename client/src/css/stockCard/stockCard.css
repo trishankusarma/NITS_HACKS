@@ -35,3 +35,28 @@ border-radius: 1rem;
     clip-path: circle(45% at 50% 50%);
     margin-top: 1vh;
  }
+ .container2{
+  padding: 12px 25px;
+  color: rgb(16, 188, 231);
+  font-family: cursive;
+  width: 100%;
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: rgba(17, 55, 180, 0.801);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 15vh;
+  font-weight: 600;
+ 
+ }
+ .container2:nth-child(2)
+ {
+   margin-bottom: 1vh;
+ }
+ .card1 img{
+  clip-path: polygon(0 0, 100% 0, 100% 16%, 100% 80%, 100% 100%, 0 100%, 0% 80%, 0% 20%);
+    margin-top: 1vh;
+    border-radius: 1rem 1rem 0 0;
+
+ }

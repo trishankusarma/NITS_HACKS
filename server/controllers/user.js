@@ -148,7 +148,7 @@ const userContoller = {
       });
 
       res.status(200).json({
-        user: data,
+        buyedItem : data,
         error: null,
       });
     } catch (error) {
