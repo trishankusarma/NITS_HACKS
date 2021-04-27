@@ -41,14 +41,14 @@ const Register = () => {
     const onSubmit = async (e)=>{
         e.preventDefault();
 
-        const respo = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}
-                    .json?access_token=pk.eyJ1IjoidHJpc2hhbmt1c2FybWExNjUiLCJhIjoiY2tueXowamk4MDBxYzJ4cGdyeHkwcnZicyJ9.SWh1p75aT6XbQrgO1J1fMQ
-                    &limit=1`,{
-                        withCredentials:true,
-                        credentials:'include'
-                    });
+        // const respo = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}
+        //             .json?access_token=pk.eyJ1IjoidHJpc2hhbmt1c2FybWExNjUiLCJhIjoiY2tueXowamk4MDBxYzJ4cGdyeHkwcnZicyJ9.SWh1p75aT6XbQrgO1J1fMQ
+        //             &limit=1`,{
+        //                 withCredentials:true,
+        //                 credentials:'include'
+        //             });
         
-        console.log(respo);
+        // console.log(respo);
 
         const config = {
             header: {
