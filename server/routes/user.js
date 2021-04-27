@@ -15,9 +15,10 @@ router.post('/register',userContoller.registration);
 router.post('/login',userContoller.login);
 
 router.post("/addTocart", userAuth("User"),userContoller.addTocart);
-
+router.post("/removeAddTocart", userAuth("User"),userContoller.removeAddToCart);
 router.post("/bought", userAuth("User"),userContoller.Bought);
 router.post("/savelater", userAuth("User"),userContoller.saveLater);
+router.post("/removeSavelater", userAuth("User"),userContoller.removeSaveLater);
 router.post("/reset", userAuth("User"),userContoller.reset);
 
 // router.put('/uploadProfile', upload.single('upload_profile') , userAuth("User") , userContoller);

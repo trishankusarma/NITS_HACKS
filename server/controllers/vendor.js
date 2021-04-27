@@ -1,5 +1,5 @@
 const { Vendor, Product, User, CartItem } = require("../models");
-const { options ,errorResConfig} = require("../utils");
+const { options, errorResConfig } = require("../utils");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 const crypto = require("crypto");
@@ -15,9 +15,7 @@ const transporter = nodemailer.createTransport(
 
 const bcrypt = require("bcryptjs");
 
-
 const VendorContoller = {
-
   // AUTH
   login: async (req, res, next) => {
     const { email, password } = req.body;
@@ -37,14 +35,14 @@ const VendorContoller = {
       console.log(error);
       // errorResConfig(error, res);
       res.status(500).json({
-        error:true,
-        message:"internal error"
-      })
+        error: true,
+        message: "internal error",
+      });
     }
   },
   registration: async (req, res, next) => {
     try {
-      const { name, email, phoneNo, password } = req.body;
+      const { name, email, phoneNo, password, long, lat } = req.body;
 
       const user = await Vendor.findOne({ email });
 
@@ -57,6 +55,8 @@ const VendorContoller = {
         email,
         phoneNo,
         password,
+        long,
+        lat,
       });
 
       const token = await newUser.generateAuthToken();
@@ -98,7 +98,7 @@ const VendorContoller = {
       errorResConfig(error, res);
     }
   },
-  
+
   getAll_products: async (req, res, next) => {
     try {
       const data = await Product.find({
@@ -106,7 +106,7 @@ const VendorContoller = {
       });
       res.status(200).json({
         products: data,
-        error: null
+        error: null,
       });
     } catch (error) {
       console.log(error);
@@ -127,16 +127,18 @@ const VendorContoller = {
       errorResConfig(error, res);
     }
   },
-  getAllVendorsSellNow:async(req,res,next)=>{
-    try{
-      const data=await Vendor.find({_id:{$ne:req.user._id},sellNow:true});
+  getAllVendorsSellNow: async (req, res, next) => {
+    try {
+      const data = await Vendor.find({
+        _id: { $ne: req.user._id },
+        sellNow: true,
+      });
       res.status(200).json({
-        error:null,
-        vendors:data
-      })
+        error: null,
+        vendors: data,
+      });
       // vendor negosiation through phone
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
       errorResConfig(error, res);
     }
@@ -185,7 +187,6 @@ const VendorContoller = {
   // POST
   postOne_product: async (req, res, next) => {
     try {
-
       console.log(req.body);
       console.log(req.file);
 
@@ -197,14 +198,14 @@ const VendorContoller = {
         quantity,
         price,
         productType: req.file.mimetype,
-        productImage: req.file.buffer
+        productImage: req.file.buffer,
       });
 
       await newProduct.save();
 
       res.status(201).json({
         product: newProduct,
-        error: null
+        error: null,
       });
     } catch (error) {
       console.log(error);
